@@ -6,9 +6,9 @@ const baseSkillLabels = {
   1: 'Speed',
   2: 'Fix',
   3: 'Ladder',
-  4: 'Gate',
+  4: 'Line',
   5: 'Make',
-  6: 'Test',
+  6: 'Pressure',
 }
 
 const nodePositions = [
@@ -172,16 +172,15 @@ function nodeLabelForRound(round, currentDrill, nextDrill) {
 function shortSkillName(title) {
   const names = {
     'Speed Check': 'Speed',
-    'Past the hole': 'Past',
-    'Softer pace': 'Soft',
-    'Start line': 'Line',
-    'Smaller ring': 'Small',
-    'Slow routine': 'Reset',
-    'Simple speed': 'Simple',
+    'Past the Cup': 'Past',
+    'Softer Pace': 'Soft',
+    'Start Line': 'Line',
+    'Smaller Ring': 'Small',
+    'Slow Routine': 'Reset',
+    'Simple Speed': 'Simple',
     Ladder: 'Ladder',
-    Gate: 'Gate',
     'Make Zone': 'Make',
-    'Mixed Test': 'Test',
+    'Pressure Test': 'Press',
   }
 
   return names[title] ?? title
@@ -196,10 +195,12 @@ function purposeLineForDrill(drill) {
     'pattern-fix-slow-routine': 'Reset before every putt.',
     'pattern-fix-simple-speed': 'Simplify the speed.',
     ladder: 'Change speed cleanly.',
-    gate: 'Start it on line.',
+    'start-line': 'Start it on line.',
     'make-zone': 'Hole short putts.',
-    'mixed-test': 'Put it all together.',
+    'pressure-test': 'Pass the set.',
   }
 
   return lines[drill?.id] ?? drill?.taskCopy ?? 'Keep moving forward.'
 }
+
+

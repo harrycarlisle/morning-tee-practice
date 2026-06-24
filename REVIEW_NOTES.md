@@ -74,3 +74,35 @@ Home -> Speed Check -> logging -> result -> Slow Routine unlock -> process lesso
 - Implemented: The current progress path now labels islands by practice skill and shows a tiny purpose line under `Unlocked: [Skill Name]`, so the unlock feels earned without adding XP or social mechanics.
 - Files changed: `REFERENCE_SCAN.md`, `src/components/ProgressPath.jsx`, `src/App.css`, `REVIEW_NOTES.md`.
 - Manual testing needed: Home -> Putting -> Speed Check -> log result -> adaptive result -> island unlock. Confirm the next skill label and purpose line fit on mobile.
+
+## Putting Path Depth Sprint
+
+Goal: make each putting drill teach or test a different skill instead of sharing one generic score.
+
+### Deepened Now
+
+- Speed Check: kept as baseline diagnosis with 70% inside target success and adaptive miss patterns.
+- Slow Routine: keeps phone-down process flow and now treats routine success as time improvement plus inside-count stability or improvement.
+- Past the Cup: now scores past-cup safe finishes and reports short misses.
+- Softer Pace: now scores inside count plus long-miss control.
+- Start Line: now scores center-line finishes and side leak.
+- Smaller Ring: now scores precision inside the 2 ft target.
+- Ladder: now scores 5, 8, and 12 pace buckets separately and names the strongest/weakest distance.
+- Make Zone: now scores holed count and best make streak.
+- Pressure Test: now replaces the generic mixed test label with pass/fail Level 1 scoring.
+
+### Product Decisions
+
+- Kept the same screens and logging flow.
+- Did not add extra taps during physical reps.
+- Did not add XP, leaderboard, profile, social, login, Supabase, or new practice areas.
+- Kept visual changes minimal; only skill labels changed where needed.
+
+### Manual Testing Needed
+
+- Mostly short Round 1 should unlock Past the Cup.
+- Mostly left or right Round 1 should unlock Start Line.
+- Solid pace Round 1 should unlock Smaller Ring.
+- Ladder result should show a strongest and weakest distance.
+- Make Zone should show made count and best streak.
+- Pressure Test should show Passed or Run it back.

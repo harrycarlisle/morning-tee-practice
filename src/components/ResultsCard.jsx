@@ -10,13 +10,15 @@ export function ResultsCard({
   shouldAskHandedness,
 }) {
   const [showWhy, setShowWhy] = useState(false)
-  const scoreText = `${result.insideCount}/${result.total} inside target`
+  const scoreText = result.primaryMetricText ?? `${result.insideCount}/${result.total} inside target`
   const scorePercent =
     result.total === 0 ? 0 : Math.round((result.insideCount / result.total) * 100)
   const isRushed = result.pattern === 'rushed routine'
   const hasProcessFeedback = Boolean(result.processFeedback)
   const title = resultTitle(result, scoreText)
-  const showStat = title !== scoreText
+  const normalizedTitle = title.replace(/[.]$/, '')
+  const normalizedScore = scoreText.replace(/[.]$/, '')
+  const showStat = normalizedTitle !== normalizedScore
   const feedbackLines = isRushed && !hasProcessFeedback
     ? []
     : (result.processFeedback?.lines.filter((line) => line !== title) ?? [])
@@ -25,6 +27,12 @@ export function ResultsCard({
     : ''
   const showTiming = timingText && (isRushed || hasProcessFeedback)
   const whyText = whyTextForResult(result)
+  const summaryStats = [
+    ...(result.subStatText ? [result.subStatText] : []),
+    ...(result.holedCount > 0 && result.primaryMetricKey !== 'holed'
+      ? [`${result.holedCount} holed`]
+      : []),
+  ]
 
   return (
     <section
@@ -50,7 +58,9 @@ export function ResultsCard({
 
         <div className="result-summary">
           {showStat && <span>{scoreText}</span>}
-          {result.holedCount > 0 && <span>{result.holedCount} holed</span>}
+          {summaryStats.map((stat) => (
+            <span key={stat}>{stat}</span>
+          ))}
         </div>
 
         <div className="result-why">
@@ -123,6 +133,7 @@ export function ResultsCard({
 }
 
 function resultTitle(result, scoreText) {
+  if (result.headline) return result.headline
   if (result.processFeedback?.status === 'routine-helped') return 'Better reset.'
   if (result.processFeedback?.status === 'still-rushed') return 'Still rushed.'
   if (result.pattern === 'rushed routine') return "You're moving fast."
@@ -138,6 +149,8 @@ function resultTitle(result, scoreText) {
 }
 
 function whyTextForResult(result) {
+  if (result.insight) return result.insight
+
   const whyText = {
     'rushed routine': 'Fast sets make your routine harder to repeat.',
     'mostly short': 'Too many finished before the cup.',
@@ -181,11 +194,31 @@ function patternClass(pattern) {
     'rushed routine': 'routine',
     'solid speed': 'centered',
     'make streak': 'make',
+    'past-cup-success': 'centered',
+    'past-cup-short': 'short',
+    'softer-pace-success': 'centered',
+    'softer-pace-long': 'long',
+    'start-line-tight': 'centered',
+    'start-line-leak': 'left',
+    'smaller-ring-success': 'centered',
+    'smaller-ring-loose': 'speed',
+    'routine-helped': 'routine',
+    'ladder-balanced': 'centered',
+    'ladder-gap': 'speed',
+    'make-zone-success': 'make',
+    'make-zone-work': 'make',
+    'pressure-pass': 'make',
+    'pressure-fail': 'speed',
   }
 
   return classes[pattern] ?? 'speed'
 }
 
 function isSidePattern(pattern) {
-  return pattern === 'mostly left' || pattern === 'mostly right'
+  return pattern === 'mostly left' || resultSideLeak(pattern)
 }
+
+function resultSideLeak(pattern) {
+  return pattern === 'mostly right' || pattern === 'start-line-leak'
+}
+

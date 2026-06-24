@@ -148,7 +148,7 @@ Tone:
 - "Here's the process. Now do it."
 - Do not explain the science inside the app.
 
-### Round 4: Gate
+### Round 4: Start Line
 
 - 6 paces
 - 10 putts
@@ -165,13 +165,13 @@ Tone:
 - Tapping the hole should log made putts quickly.
 - Reward 6+ makes, 8+ makes, and 10/10.
 
-### Round 6: Mixed Test
+### Round 6: Pressure Test
 
 - 3 short makes
 - 3 medium speed putts
 - 4 long lag putts
-- Purpose: combine skill
-- Task copy: "Short. Medium. Long."
+- Purpose: combine skills under consequence
+- Task copy: "Pass the set."
 - End with "Putting Level 1 complete."
 
 ## Hole Logging
@@ -256,3 +256,114 @@ Slow Routine result copy:
 - Pucks and progress indicators must adapt to current putt count.
 - Round 2 should unlock only after the path-fill animation completes.
 - The next-round button should show the actual adaptive drill name.
+
+## Putting Path Depth Audit
+
+### Speed Check
+
+- Skill being trained: baseline pace control.
+- Setup: 8 paces, 10 putts, 3 ft ring.
+- What the golfer does: hits one set and marks every finish.
+- What gets measured: inside target count, short/long pattern, left/right pattern, elapsed set time.
+- Success rule: 7 of 10 inside the 3 ft ring.
+- Failure pattern: mostly short, mostly long, mostly left, mostly right, rushed, or scattered.
+- Result insight: one baseline pattern.
+- Next recommended drill: adaptive Round 2.
+- Difference: diagnoses the golfer before assigning a fix.
+
+### Slow Routine
+
+- Skill being trained: repeatable pre-shot process.
+- Setup: 8 paces, 10 putts, 3 ft ring.
+- What the golfer does: learns Mark, Read, Choose, Rehearse, Set, Roll, then puts the phone down.
+- What gets measured: elapsed set time and inside target count.
+- Success rule: more realistic elapsed time and target count at least as good as Round 1.
+- Failure pattern: set remains rushed.
+- Result insight: whether routine helped the pace.
+- Next recommended drill: Ladder.
+- Difference: trains process before outcome.
+
+### Past the Cup
+
+- Skill being trained: committing enough speed.
+- Setup: 8 paces, 10 putts, safe zone past the cup.
+- What the golfer does: rolls each putt to finish past the cup.
+- What gets measured: past-cup safe finishes.
+- Success rule: 7 of 10 past the cup and inside the safe zone.
+- Failure pattern: too many putts still finish short.
+- Result insight: whether short misses improved.
+- Next recommended drill: Ladder.
+- Difference: rewards passing the cup, not generic proximity.
+
+### Softer Pace
+
+- Skill being trained: controlling runout.
+- Setup: 8 paces, 10 putts, 3 ft ring.
+- What the golfer does: rolls softer pace without leaving it short.
+- What gets measured: inside target count and long misses.
+- Success rule: 7 inside with 2 or fewer long misses.
+- Failure pattern: long misses keep stretching the set.
+- Result insight: whether misses stayed closer.
+- Next recommended drill: Ladder.
+- Difference: long misses matter more than generic misses.
+
+### Start Line
+
+- Skill being trained: start direction.
+- Setup: 6 paces, 10 putts, simple gate near the ball.
+- What the golfer does: starts each putt through the gate.
+- What gets measured: center-line finishes and side bias.
+- Success rule: 7 of 10 center-line finishes.
+- Failure pattern: left or right leak remains.
+- Result insight: whether the start line tightened.
+- Next recommended drill: Ladder if adaptive, Make Zone if on the main path.
+- Difference: trains line instead of distance control.
+
+### Smaller Ring
+
+- Skill being trained: speed precision.
+- Setup: 8 paces, 10 putts, 2 ft ring.
+- What the golfer does: repeats the baseline putt with a smaller target.
+- What gets measured: inside count in the 2 ft ring.
+- Success rule: 7 of 10 inside the smaller ring.
+- Failure pattern: good speed is not tight enough yet.
+- Result insight: whether precision held up.
+- Next recommended drill: Ladder.
+- Difference: makes a good baseline harder instead of fixing a miss.
+
+### Ladder
+
+- Skill being trained: speed change across distances.
+- Setup: 5, 8, and 12 paces; 3 putts each.
+- What the golfer does: changes distance without changing the whole routine.
+- What gets measured: inside target count by distance bucket.
+- Success rule: at least 2 of 3 inside from each distance.
+- Failure pattern: one distance falls behind the others.
+- Result insight: strongest and weakest distance.
+- Next recommended drill: Start Line.
+- Difference: tests distance adjustment, not one repeated putt.
+
+### Make Zone
+
+- Skill being trained: short-putt conversion.
+- Setup: 4 to 5 ft, 10 putts.
+- What the golfer does: tries to hole each putt and logs makes at the cup.
+- What gets measured: holed count and best make streak.
+- Success rule: 6 or more makes.
+- Failure pattern: low make count or short streak.
+- Result insight: make rate and best streak.
+- Next recommended drill: Pressure Test.
+- Difference: scores the cup, not a finish ring.
+
+### Pressure Test
+
+- Skill being trained: transfer under consequence.
+- Setup: 3 short, 3 medium, and 4 long putts.
+- What the golfer does: combines make putts, speed putts, and lag putts.
+- What gets measured: short makes, medium/long proximity, total inside target.
+- Success rule: 2 short makes and 7 total inside target.
+- Failure pattern: misses the pass mark.
+- Result insight: Passed or Run it back.
+- Next recommended drill: Putting Level 1 complete.
+- Difference: combines the skills under a pass/fail finish.
+
