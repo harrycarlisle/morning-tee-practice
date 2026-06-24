@@ -46,6 +46,11 @@ export const drillByRound = {
     contextCopy: '3 balls each.',
     animationVariant: 'ladder',
     resultRules: ['inside-count', 'distance-buckets'],
+    loggingGroups: [
+      { label: '5 paces', count: 3 },
+      { label: '8 paces', count: 3 },
+      { label: '12 paces', count: 3 },
+    ],
     depth: {
       skill: 'Speed change across distances',
       setup: '5, 8, and 12 paces; 3 putts each',
@@ -123,6 +128,11 @@ export const drillByRound = {
     contextCopy: 'Short. Medium. Long.',
     animationVariant: 'mixed',
     resultRules: ['holed-count', 'inside-count', 'pressure-pass'],
+    loggingGroups: [
+      { label: 'short makes', count: 3 },
+      { label: 'medium speed', count: 3 },
+      { label: 'long lags', count: 4 },
+    ],
     depth: {
       skill: 'Transfer under consequence',
       setup: '3 short, 3 medium, 4 long putts',
@@ -338,3 +348,5 @@ export function formatDistanceLabel(drill) {
 
   return `${drill.distancePaces} paces`
 }
+
+

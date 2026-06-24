@@ -106,3 +106,44 @@ Goal: make each putting drill teach or test a different skill instead of sharing
 - Ladder result should show a strongest and weakest distance.
 - Make Zone should show made count and best streak.
 - Pressure Test should show Passed or Run it back.
+
+## 10-putt Logging Friction Review
+
+### Audit
+
+- Basic Speed Check logging: Fast enough. One green tap per miss, cup tap for makes, draggable markers.
+- Hole tap / make logging: Strong for normal sets. Batch make logging keeps the cup useful.
+- Dragging markers on mobile: Markers are large enough and distance feedback appears while dragging.
+- Ladder ordered logging: Risky before this pass because scoring assumes 5, 8, then 12 paces but the map only showed total marked.
+- Pressure Test ordered logging: Risky before this pass because scoring assumes short, medium, then long groups.
+- Result accuracy if user logs out of order: Still depends on honest ordered logging, but the screen now shows the active group.
+
+### Ideas Considered
+
+1. Ordered logging label for Ladder and Pressure Test.
+   - For: Makes the current mini-set obvious without adding a screen or more practice-time phone taps.
+   - Against: Still relies on the golfer logging in order after the set.
+   - Decision: Implement now.
+
+2. Optional `I forgot order` fallback.
+   - For: Could prevent misleading Ladder and Pressure insights when the golfer forgets sequence.
+   - Against: Adds a new branch and would need alternate scoring/result copy.
+   - Decision: Document for later.
+
+3. Faster all-short/all-long shortcuts.
+   - For: Could reduce 10-tap friction for miss clusters.
+   - Against: Reduces result accuracy and could turn practice into coarse self-reporting.
+   - Decision: Reject for MVP.
+
+### Implemented
+
+- Added ordered logging groups to Ladder and Pressure Test.
+- Logging now shows `Logging 5 paces - 0/3`, `Logging 8 paces - 0/3`, `Logging short makes - 0/3`, and similar group labels.
+- Hole make options are capped to the current ordered group for ordered drills.
+
+### Manual Test Cases
+
+- Ladder: after 0, 3, and 6 markers, the label should move from 5 paces to 8 paces to 12 paces.
+- Pressure Test: after 0, 3, and 6 markers, the label should move from short makes to medium speed to long lags.
+- Speed Check: no ordered label should appear, and the hole sheet should still allow 0 through remaining putts.
+- Ladder/Pressure hole sheet: options should stop at the current group remaining count.

@@ -34,6 +34,10 @@ export function GreenTapMap({ drill, markers, onBack, onMarkersChange, onReview 
   const isReady = count === drill.puttCount
   const holedCount = markers.filter((marker) => marker.holed).length
   const targetRadius = targetRadiusForFeet(drill.targetSizeFeet)
+  const loggingGroup = currentLoggingGroup(drill, count)
+  const holeOptionLimit = loggingGroup
+    ? Math.min(remaining, loggingGroup.count - loggingGroup.completed)
+    : remaining
 
   function pointFromEvent(event) {
     const rect = greenRef.current.getBoundingClientRect()
@@ -154,6 +158,11 @@ export function GreenTapMap({ drill, markers, onBack, onMarkersChange, onReview 
         <p>{holedCount > 0 ? `${holedCount} holed` : `${count}/${drill.puttCount} marked`}</p>
         {!isReady && (
           <div className="map-instructions">
+            {loggingGroup && (
+              <span className="map-order-pill">
+                Logging {loggingGroup.label} - {loggingGroup.completed}/{loggingGroup.count}
+              </span>
+            )}
             <span>Tap the hole for makes.</span>
             <span>Tap the green for misses.</span>
           </div>
@@ -270,9 +279,9 @@ export function GreenTapMap({ drill, markers, onBack, onMarkersChange, onReview 
       {holeSheetOpen && (
         <div className="hole-sheet" role="dialog" aria-label="How many went in?">
           <div className="hole-sheet-card">
-            <p>How many went in?</p>
+            <p>{loggingGroup ? `Makes from ${loggingGroup.label}?` : 'How many went in?'}</p>
             <div className="hole-options">
-              {Array.from({ length: remaining + 1 }, (_, index) => (
+              {Array.from({ length: holeOptionLimit + 1 }, (_, index) => (
                 <button key={index} onClick={() => addHoledPutts(index)} type="button">
                   {index}
                 </button>
@@ -290,6 +299,27 @@ export function GreenTapMap({ drill, markers, onBack, onMarkersChange, onReview 
       )}
     </section>
   )
+}
+
+function currentLoggingGroup(drill, count) {
+  if (!drill.loggingGroups?.length) return null
+
+  let start = 0
+
+  for (const group of drill.loggingGroups) {
+    const end = start + group.count
+
+    if (count < end) {
+      return {
+        ...group,
+        completed: count - start,
+      }
+    }
+
+    start = end
+  }
+
+  return null
 }
 
 function makeHoledMarker(index) {
@@ -312,3 +342,4 @@ function pointStyle(point) {
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max)
 }
+
