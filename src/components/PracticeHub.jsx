@@ -58,6 +58,7 @@ export function PracticeHub({ onStartPutting }) {
         <div>
           <p className="eyebrow">Practice</p>
           <h1 id="practice-title">Choose a drill.</h1>
+          <p className="hub-promise">Guided putting. Ten balls. One insight.</p>
         </div>
       </div>
 

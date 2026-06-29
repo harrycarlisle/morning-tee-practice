@@ -33,6 +33,8 @@ export function GreenTapMap({ drill, markers, onBack, onMarkersChange, onReview 
   const remaining = Math.max(0, drill.puttCount - count)
   const isReady = count === drill.puttCount
   const holedCount = markers.filter((marker) => marker.holed).length
+  const markedText = `${count}/${drill.puttCount} marked`
+  const mapStatusText = holedCount > 0 ? `${markedText}, ${holedCount} holed` : markedText
   const targetRadius = targetRadiusForFeet(drill.targetSizeFeet)
   const loggingGroup = currentLoggingGroup(drill, count)
   const holeOptionLimit = loggingGroup
@@ -154,8 +156,8 @@ export function GreenTapMap({ drill, markers, onBack, onMarkersChange, onReview 
       </header>
 
       <div className="map-heading">
-        <h1 id="map-title">{isReady ? 'Review?' : 'Log results'}</h1>
-        <p>{holedCount > 0 ? `${holedCount} holed` : `${count}/${drill.puttCount} marked`}</p>
+        <h1 id="map-title">{isReady ? 'Check marks' : 'Log results'}</h1>
+        <p>{mapStatusText}</p>
         {!isReady && (
           <div className="map-instructions">
             {loggingGroup && (
@@ -165,6 +167,7 @@ export function GreenTapMap({ drill, markers, onBack, onMarkersChange, onReview 
             )}
             <span>Tap the hole for makes.</span>
             <span>Tap the green for misses.</span>
+            <span>Be close, not perfect.</span>
           </div>
         )}
       </div>
@@ -230,7 +233,7 @@ export function GreenTapMap({ drill, markers, onBack, onMarkersChange, onReview 
         </svg>
 
         <span className="map-flag" aria-hidden="true" />
-        {remaining > 0 && <span className="map-hole-hint">Tap cup</span>}
+        {remaining > 0 && <span className="map-hole-hint">Tap for makes</span>}
         <button
           aria-label="Log holed putts"
           className="map-hole-button"
@@ -280,6 +283,7 @@ export function GreenTapMap({ drill, markers, onBack, onMarkersChange, onReview 
         <div className="hole-sheet" role="dialog" aria-label="How many went in?">
           <div className="hole-sheet-card">
             <p>{loggingGroup ? `Makes from ${loggingGroup.label}?` : 'How many went in?'}</p>
+            <span>Makes count inside.</span>
             <div className="hole-options">
               {Array.from({ length: holeOptionLimit + 1 }, (_, index) => (
                 <button key={index} onClick={() => addHoledPutts(index)} type="button">

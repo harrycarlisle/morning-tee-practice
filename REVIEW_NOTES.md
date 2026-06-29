@@ -147,3 +147,62 @@ Goal: make each putting drill teach or test a different skill instead of sharing
 - Pressure Test: after 0, 3, and 6 markers, the label should move from short makes to medium speed to long lags.
 - Speed Check: no ordered label should appear, and the hole sheet should still allow 0 through remaining putts.
 - Ladder/Pressure hole sheet: options should stop at the current group remaining count.
+
+## 5-loop Controlled Product Sprint
+
+Goal: improve the real putting-green loop without adding accounts, XP, social features, new practice areas, or extra phone interaction during reps.
+
+### Loop 1
+
+- Issue found: Home made the next tap obvious, but not the product promise.
+- Idea: Add one short promise line under `Choose a drill.`
+- Argument for: A first-time golfer can quickly understand that this is guided putting practice, not a generic tracker.
+- Argument against: Home copy can become marketing-like if it grows beyond one line.
+- Decision: Implement now.
+- Files changed: `src/components/PracticeHub.jsx`, `src/App.css`.
+- Validation: `npm.cmd run lint` passed; `npm.cmd run build` passed.
+- Manual testing needed: Confirm the promise line fits on small phones without pushing `Putting` below comfortable thumb range.
+
+### Loop 2
+
+- Issue found: Setup screens showed the target, but not what counts as a good set.
+- Idea: Add one compact success chip from drill metadata.
+- Argument for: The golfer knows the pass mark before putting the phone down.
+- Argument against: Adds another chip to already dense setup screens.
+- Decision: Implement now.
+- Files changed: `src/data/puttingDrills.js`, `src/components/DrillTask.jsx`, `src/App.css`.
+- Validation: `npm.cmd run lint` passed; `npm.cmd run build` passed.
+- Manual testing needed: Check every drill setup for chip wrapping, especially `Softer Pace` and `Pressure Test`.
+
+### Loop 3
+
+- Issue found: Logging ready state said `Review?`, and the progress status could hide total marked count once a make was logged.
+- Idea: Change ready title to `Check marks`, keep marked count visible, and add `Makes count inside.` to the make sheet.
+- Argument for: Logging feels less like precision work and more like quick, confident result capture.
+- Argument against: The make sheet gains one extra line of text.
+- Decision: Implement now.
+- Files changed: `src/components/GreenTapMap.jsx`, `src/App.css`.
+- Validation: `npm.cmd run lint` passed; `npm.cmd run build` passed.
+- Manual testing needed: Tap the cup, log makes, then finish the set and confirm the status remains clear.
+
+### Loop 4
+
+- Issue found: Unlock screens named the next drill, but did not clearly connect the result to the unlocked skill.
+- Idea: Add one earned-reason line such as `Fast set. Train the reset.`
+- Argument for: The path feels more skill-based and less decorative.
+- Argument against: Adds another line to a reward screen that already has title and purpose copy.
+- Decision: Implement now.
+- Files changed: `src/components/ProgressPath.jsx`, `src/App.css`.
+- Validation: `npm.cmd run lint` passed; `npm.cmd run build` passed.
+- Manual testing needed: Smoke at least rushed, short, and solid-speed results to confirm the reason line matches the unlock.
+
+### Loop 5
+
+- Issue found: Single-distance setup graphics could show duplicate distance labels.
+- Idea: Show one distance cue for single-distance drills, while keeping grouped distance tags for Ladder and Pressure Test.
+- Argument for: The setup visual is cleaner in sunlight and requires less interpretation.
+- Argument against: Ladder still needs careful visual review because it has multiple distances by design.
+- Decision: Implement now.
+- Files changed: `src/components/DrillTask.jsx`.
+- Validation: `npm.cmd run lint` passed; `npm.cmd run build` passed.
+- Manual testing needed: Open Speed Check, Ladder, and Pressure Test setup screens and confirm the distance cues are clear.

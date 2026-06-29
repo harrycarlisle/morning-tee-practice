@@ -52,8 +52,10 @@
   - "Walk back 8 paces."
   - "Hit 10 putts."
   - "Goal: inside 3 ft."
-- Context copy: "We'll check your speed."
-- Button: "I hit 10 putts"
+- Context copy: "Find your baseline speed."
+- Success copy: "Good: 7/10 inside."
+- Phone-down cue: "Phone down. Hit 10 putts."
+- Button: "I'm ready to log"
 
 ### Round 2: Pattern Fix
 
@@ -252,6 +254,7 @@ Slow Routine result copy:
 - Avoid long instruction text.
 - Keep most screen copy under 8 words.
 - Let animations explain the setup where possible.
+- Setup screens should show the skill, target, and success mark before the phone goes down.
 - Disabled cards should feel locked, not broken.
 - Pucks and progress indicators must adapt to current putt count.
 - Round 2 should unlock only after the path-fill animation completes.

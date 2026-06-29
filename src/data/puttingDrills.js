@@ -17,7 +17,8 @@ export const drillByRound = {
       'Hit 10 putts.',
       'Goal: inside 3 ft.',
     ],
-    contextCopy: "We'll check your speed.",
+    contextCopy: 'Find your baseline speed.',
+    successCopy: 'Good: 7/10 inside.',
     animationVariant: 'speed',
     resultRules: ['inside-count', 'finish-pattern', 'routine-time'],
     depth: {
@@ -44,6 +45,7 @@ export const drillByRound = {
     successThreshold: 2,
     taskCopy: 'Three distances. Match the speed.',
     contextCopy: '3 balls each.',
+    successCopy: 'Good: 2/3 each.',
     animationVariant: 'ladder',
     resultRules: ['inside-count', 'distance-buckets'],
     loggingGroups: [
@@ -75,6 +77,7 @@ export const drillByRound = {
     successThreshold: 0.7,
     taskCopy: 'Start it through the gate.',
     contextCopy: 'Begin on line.',
+    successCopy: 'Good: 7/10 centered.',
     animationVariant: 'gate',
     resultRules: ['center-line-count', 'side-pattern'],
     depth: {
@@ -101,6 +104,7 @@ export const drillByRound = {
     successThreshold: 6,
     taskCopy: 'Make as many as you can.',
     contextCopy: 'Tap the cup for makes.',
+    successCopy: 'Good: 6+ makes.',
     animationVariant: 'make',
     resultRules: ['holed-count', 'best-streak'],
     depth: {
@@ -126,6 +130,7 @@ export const drillByRound = {
     successRule: 'pressure-pass',
     taskCopy: 'Pass the set.',
     contextCopy: 'Short. Medium. Long.',
+    successCopy: 'Pass: 2 makes, 7 inside.',
     animationVariant: 'mixed',
     resultRules: ['holed-count', 'inside-count', 'pressure-pass'],
     loggingGroups: [
@@ -160,6 +165,7 @@ export const roundTwoVariants = {
     successThreshold: 7,
     taskCopy: 'Roll each putt past the cup.',
     contextCopy: 'Beat short misses.',
+    successCopy: 'Good: 7/10 past.',
     animationVariant: 'past-hole',
     resultRules: ['past-cup-count', 'short-miss-reduction'],
     depth: {
@@ -186,6 +192,7 @@ export const roundTwoVariants = {
     successThreshold: 7,
     taskCopy: 'Die it near the cup.',
     contextCopy: 'Long misses hurt.',
+    successCopy: 'Good: 7 inside, 2 long max.',
     animationVariant: 'soft',
     resultRules: ['inside-count', 'long-miss-control'],
     depth: {
@@ -212,6 +219,7 @@ export const roundTwoVariants = {
     successThreshold: 0.7,
     taskCopy: 'Start it through the gate.',
     contextCopy: 'Could be face or aim.',
+    successCopy: 'Good: 7/10 centered.',
     animationVariant: 'gate',
     resultRules: ['center-line-count', 'side-pattern'],
     depth: {
@@ -238,6 +246,7 @@ export const roundTwoVariants = {
     successThreshold: 0.7,
     taskCopy: 'Same putt. Smaller target.',
     contextCopy: 'Level up speed.',
+    successCopy: 'Good: 7/10 inside.',
     animationVariant: 'small-ring',
     resultRules: ['inside-count', 'precision-target'],
     depth: {
@@ -263,6 +272,7 @@ export const roundTwoVariants = {
     successRule: 'routine-reset',
     taskCopy: 'Reset before every putt.',
     contextCopy: 'Same routine. Same roll.',
+    successCopy: 'Good: better pace.',
     animationVariant: 'routine',
     activeTask: 'routine',
     requiresProcessLesson: true,
@@ -292,6 +302,7 @@ export const roundTwoVariants = {
     successThreshold: 0.7,
     taskCopy: 'Same roll. Closer start.',
     contextCopy: 'Find the pattern.',
+    successCopy: 'Good: 7/10 inside.',
     animationVariant: 'speed',
     resultRules: ['inside-count', 'finish-pattern'],
     depth: {

@@ -45,6 +45,7 @@ export function ProgressPath({
   const purposeLine = isComplete
     ? 'Putting Level 1 complete.'
     : purposeLineForDrill(nextDrill)
+  const earnedReason = isComplete ? '' : earnedReasonForResult(result)
   const fillPathD = isComplete
     ? fullPathD
     : segmentPaths[Math.max(0, completedRound - 1)] ?? fullPathD
@@ -69,6 +70,7 @@ export function ProgressPath({
         <h1 id="path-title">
           {isComplete ? 'Level 1 done.' : `Unlocked: ${formatUnlockName(nextDrill.title)}`}
         </h1>
+        {earnedReason && <p className="path-reason">{earnedReason}</p>}
         <p className="path-purpose">{purposeLine}</p>
       </div>
 
@@ -201,6 +203,28 @@ function purposeLineForDrill(drill) {
   }
 
   return lines[drill?.id] ?? drill?.taskCopy ?? 'Keep moving forward.'
+}
+
+function earnedReasonForResult(result) {
+  const reasons = {
+    'rushed routine': 'Fast set. Train the reset.',
+    'mostly short': 'Short misses. Roll it past.',
+    'mostly long': 'Long misses. Soften pace.',
+    'mostly left': 'Side miss. Check the line.',
+    'mostly right': 'Side miss. Check the line.',
+    scattered: 'Spread out. Simplify speed.',
+    'solid speed': 'Good pace. Shrink the target.',
+    'make streak': 'Good makes. Add pressure.',
+    'routine-helped': 'Better reset. Change speed.',
+    'past-cup-short': 'Still short. Build speed.',
+    'softer-pace-long': 'Still long. Control runout.',
+    'start-line-leak': 'Line leaks. Keep checking.',
+    'ladder-gap': 'One distance needs work.',
+    'make-zone-work': 'Makes need pressure.',
+    'pressure-fail': 'Run it back later.',
+  }
+
+  return reasons[result?.pattern] ?? 'Next skill unlocked.'
 }
 
 

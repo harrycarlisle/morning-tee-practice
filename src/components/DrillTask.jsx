@@ -6,6 +6,8 @@ export function DrillTask({ drill, onAppear, onBack, onComplete }) {
   const distanceTags = Array.isArray(drill.distanceSet)
     ? drill.distanceSet
     : [drill.distancePaces]
+  const hasMultipleDistances = distanceTags.length > 1
+  const walkLabel = hasMultipleDistances ? distanceTags[0] : formatDistanceLabel(drill)
   const targetScale = Math.max(0.55, drill.targetSizeFeet / 3)
 
   useEffect(() => {
@@ -54,7 +56,9 @@ export function DrillTask({ drill, onAppear, onBack, onComplete }) {
           <span>{formatDistanceLabel(drill)}</span>
           <span>{drill.puttCount} putts</span>
           <span>{drill.targetSizeFeet} ft</span>
+          {drill.successCopy && <span className="task-chip--success">{drill.successCopy}</span>}
         </div>
+        <p className="phone-down-cue">Phone down. Hit {drill.puttCount} putts.</p>
       </div>
 
       <div className="setup-stage" aria-hidden="true">
@@ -66,6 +70,9 @@ export function DrillTask({ drill, onAppear, onBack, onComplete }) {
           <span className="setup-hole" />
           <span className="setup-ring setup-ring--target" />
           <span className="setup-ring setup-ring--soft" />
+          <span className="setup-label setup-label--cup">Cup</span>
+          <span className="setup-label setup-label--target">Target</span>
+          <span className="setup-label setup-label--start">Start</span>
           {drill.targetType === 'past-hole' && <span className="past-zone" />}
           {(drill.targetType === 'gate' || drill.animationVariant === 'gate') && (
             <span className="setup-gate" />
@@ -73,12 +80,14 @@ export function DrillTask({ drill, onAppear, onBack, onComplete }) {
           {drill.animationVariant === 'routine' && <span className="routine-pulse" />}
           <span className="walk-line" />
           <span className="walk-puck" />
-          <span className="walk-label">{distanceTags[0]}</span>
-          <div className="distance-tags">
-            {distanceTags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
+          <span className="walk-label">{walkLabel}</span>
+          {hasMultipleDistances && (
+            <div className="distance-tags">
+              {distanceTags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+          )}
           <div className="ball-rack">
             {Array.from({ length: Math.min(drill.puttCount, 10) }, (_, index) => (
               <span key={index} style={{ '--i': index }} />
@@ -89,7 +98,7 @@ export function DrillTask({ drill, onAppear, onBack, onComplete }) {
 
       <button className="primary-action" onClick={onComplete} type="button">
         <Check size={20} strokeWidth={3} />
-        I hit {drill.puttCount} putts
+        I'm ready to log
       </button>
     </section>
   )
